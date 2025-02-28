@@ -1,5 +1,6 @@
 package com.example.pipeline;
 
+import com.example.config.SparkSessionProvider;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -9,13 +10,11 @@ import static org.apache.spark.sql.functions.split;
 
 public class RecordTransformationApp {
     public static void main(String[] args) {
-        SparkSession spark = SparkSession.builder()
-                .appName("Record transformations")
-                .master("local")
-                .getOrCreate();
+        RecordTransformationApp.run(SparkSessionProvider.getSparkSession());
+    }
 
-        Dataset<Row> intermediateDf = spark
-                .read()
+    private static void run(final SparkSession sparkSession) {
+        Dataset<Row> intermediateDf = sparkSession.read()
                 .format("csv")
                 .option("header", "true")
                 .option("inferSchema", "true")
@@ -76,7 +75,7 @@ public class RecordTransformationApp {
         statDf.printSchema();
         statDf.sample(.01).show(5, false);
 
-        spark.stop();
+        sparkSession.stop();
     }
 
 }

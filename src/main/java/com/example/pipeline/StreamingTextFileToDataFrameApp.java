@@ -16,8 +16,11 @@ import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
 public class StreamingTextFileToDataFrameApp {
-
     public static void main(String[] args) {
+        StreamingTextFileToDataFrameApp.run();
+    }
+
+    private static void run() {
         SparkConf conf = new SparkConf().setMaster("local[2]").setAppName(
                 "Streaming Ingestion File System Text File to Dataframe");
         JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations.seconds(5));
