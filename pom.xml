@@ -15,12 +15,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.databricks</groupId>
-            <artifactId>databricks-sdk-java</artifactId>
-            <version>0.41.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.12</artifactId>
             <version>3.5.4</version>
